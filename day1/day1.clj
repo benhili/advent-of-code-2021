@@ -1,6 +1,6 @@
 (require '[clojure.string :as str])
 
-(def depths (map read-string (str/split (slurp "day1-input.txt") #"\n")))
+(def depths (map read-string (str/split (slurp "day1/day1-input.txt") #"\n")))
 
 (reduce (fn [count [prev next]]
           (cond (< prev next) (inc count)
