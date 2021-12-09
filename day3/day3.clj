@@ -16,7 +16,6 @@
       str/join
       (Long/parseLong 2)))
 
-
 (defn filter-by-frequency
   [lines keep-ones keep-zeros]
   (loop [lines lines
@@ -50,8 +49,6 @@
                 (filter-by-frequency \0 \1)
                 binary-to-decimal)]
     (* o2 co2)))
-
-
 
 (print "Part 1" (part1 input))
 (print "Part 2" (part2 input))

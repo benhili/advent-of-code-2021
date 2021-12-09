@@ -1,40 +1,49 @@
 (require '[clojure.string :as str])
 
 (def input (str/split (slurp "day4/day4-input.txt") #"\n\n"))
-(def moves (str/split (first input) #","))
+
+(def board-input (->> input
+                      rest
+                      (map #(str/split % #"\n"))))
+
+(def moves (map #(Integer/parseInt %) (-> input first (str/split #","))))
+
+(defn parse-board [board]
+  (map (fn [row]
+         (map #(Integer/parseInt %) (-> row
+                                        (str/trim)
+                                        (str/split #"\s+"))))
+       board))
+
 (def boards
-  (->> input
-       rest
-       (map #(str/split % #"\n"))
-       (map #(map (fn [x] 
-                    (-> x
-                        (str/trim)
-                        (str/split #"\s+"))
-                    ) %))))
+  (map parse-board board-input))
 
-
-(defn line-complete? [line moves] (every? (set moves) line))
+(defn line-complete? [line moves] (let [move-set (set moves)] (every? (set move-set) line)))
 
 (defn winning-board?
   [board moves]
   (or
-    (not (nil? (some #(line-complete? % moves) board)))
-    (not (nil? (some #(line-complete? % moves) (apply map list board))))
-   ))
+   (not (nil? (some #(line-complete? % moves) board)))
+   (not (nil? (some #(line-complete? % moves) (apply map list board))))))
 
-(defn sum-unmarked
+(defn calculate-score
   [board steps]
-  (->> (-> board flatten) 
-       (remove (set steps))
-       (map #(Integer/parseInt %))
-       (reduce +))
-  )
+  (* (->> (flatten board)
+          (remove (set steps))
+          (reduce +))
+     (last steps)))
 
-(defn part1 [] (first (for [i (range (count moves))
-       board boards
-       :let [steps (take i moves)]
-       :when (winning-board? board steps)] (* (sum-unmarked board steps) (Integer/parseInt (last steps))))))
+(defn part1 []
+  (loop [n 1]
+    (or
+     (let [steps (take n moves)]
+       (some-> boards #(winning-board? % steps) (calculate-score steps)))
+     (recur (inc n)))))
+
+
+(let [steps (take 30 moves)]
+  (some #(winning-board? % steps) boards))
 
 (print "Part 1" (part1))
-(print "Part 2" (part2))
+;; TODO (print "Part 2" (part2))
 
