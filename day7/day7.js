@@ -15,6 +15,7 @@ const computeMedian = arr => {
 
 const triangleNumber = num => range(1, num).reduce((a, b) => a + b)
 
+// Works but its sloooooow 🐢
 const bruteForce = arr => {
   let smallestCost = Infinity 
   let min = Math.min(...data)
@@ -33,7 +34,13 @@ const useMedian = arr => {
   return arr.reduce((count, num) => count += Math.abs(num - median), 0)
 }
 
+const computeAverage = arr => Math.floor(arr.reduce((a, b) => a + b) / arr.length)
+
+const useAverage = arr => {
+  let average = computeAverage(arr)
+  return arr.reduce((count, num) => count + triangleNumber(Math.abs(num - average)), 0)
+}
+
 console.log("Part 1: " + useMedian(data))
 
-// This is kinda slow 😬
-console.log("Part 2: " + bruteForce(data))
+console.log("Part 2: " + useAverage(data))
