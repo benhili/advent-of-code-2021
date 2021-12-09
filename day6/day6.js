@@ -8,10 +8,8 @@ const resetTime = 6       // after spawning fish are reset to 6
 
 const frequencies = (arr) => {
   let frequencyMap = {}
-
-  arr.forEach(element => {
-    let count = frequencyMap[element]
-    count ? frequencyMap[element] = count + 1 : frequencyMap[element] = 1
+  arr.forEach(
+    element => { frequencyMap[element] = frequencyMap[element] + 1 || 1 
   })
   return frequencyMap
 
@@ -22,10 +20,10 @@ const updateShoal = (shoal) => {
   for (const [internalTimer, count] of Object.entries(shoal)) {
     if (internalTimer == spawnTime) {
       newShoal[newSpawnTime] = count
-      newShoal[resetTime] ? newShoal[resetTime] += count : newShoal[resetTime] = count
+      newShoal[resetTime] = count
     } else {
       let dec = parseInt(internalTimer) - 1
-      newShoal[dec] ? newShoal[dec] += count : newShoal[dec] = count
+      newShoal[dec] = newShoal[dec] + count || count
     }
   }
 
