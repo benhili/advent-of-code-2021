@@ -9,8 +9,9 @@ const resetTime = 6       // after spawning fish are reset to 6
 const frequencies = (arr) => {
   let frequencyMap = {}
   arr.forEach(
-    element => { frequencyMap[element] = frequencyMap[element] + 1 || 1 
-  })
+    element => {
+      frequencyMap[element] = frequencyMap[element] + 1 || 1
+    })
   return frequencyMap
 
 }

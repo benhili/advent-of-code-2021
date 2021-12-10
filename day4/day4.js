@@ -16,13 +16,13 @@ const transpose = (arr) => arr[0].map((_, idx) => getColumn(arr, idx))
 
 const isWinningBoard = (board, moves) => {
   return board.some(row => isWinningRow(row, moves)) ||
-          transpose(board).some(row => isWinningRow(row,moves))
+    transpose(board).some(row => isWinningRow(row, moves))
 }
 
 const calculateScore = (board, moves) => {
   let unmarkedNums = board.flat().filter(num => !moves.includes(num))
 
-  if (unmarkedNums.length > 0) return (unmarkedNums.reduce((a, b) => a + b) * moves[moves.length -1])
+  if (unmarkedNums.length > 0) return (unmarkedNums.reduce((a, b) => a + b) * moves[moves.length - 1])
 
   return 0
 }
@@ -32,7 +32,7 @@ const part1 = (moves, boards) => {
     let currentMoves = moves.slice(0, i)
 
     let scores = boards.map((board, idx) => {
-      return {"won": isWinningBoard(board, currentMoves), "board": idx}
+      return { "won": isWinningBoard(board, currentMoves), "board": idx }
     })
 
     let winningBoards = scores.filter(x => x.won == true)
@@ -52,7 +52,7 @@ const part2 = (moves, boards, i = 1) => {
   let currentMoves = moves.slice(0, i)
 
   let scores = boards.map((board, idx) => {
-    return {"won": isWinningBoard(board, currentMoves), "board": idx}
+    return { "won": isWinningBoard(board, currentMoves), "board": idx }
   })
 
 
@@ -67,7 +67,7 @@ const part2 = (moves, boards, i = 1) => {
 
   let losingBoards = scores.filter(x => x.won == false).map(x => boards[x.board])
 
-  return part2(moves, losingBoards, i+1)
+  return part2(moves, losingBoards, i + 1)
 }
 
 

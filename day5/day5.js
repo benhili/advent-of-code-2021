@@ -2,7 +2,7 @@ const fs = require('fs')
 
 const data = fs.readFileSync('day5-input.txt', 'utf8').trim().split(/\n/)
 const range = (start, stop, step = 1) => {
-  if (start > stop) step = -1 
+  if (start > stop) step = -1
   return Array(Math.ceil((stop - start + step) / step)).fill(start).map((x, y) => x + y * step)
 }
 
@@ -11,7 +11,7 @@ const parseInput = (input) => {
 
   let [x1, y1] = start.split(",").map(x => parseInt(x, 10))
   let [x2, y2] = finish.split(",").map(x => parseInt(x, 10))
-  return {x1, x2, y1, y2}
+  return { x1, x2, y1, y2 }
 }
 
 const frequencies = (arr) => {
@@ -24,8 +24,8 @@ const frequencies = (arr) => {
   return frequencyMap
 }
 
-const generateInbetweens = ({x1, x2, y1, y2}, allowDiagonal = false) => {
-  if (x1 != x2 && y1 != y2) { 
+const generateInbetweens = ({ x1, x2, y1, y2 }, allowDiagonal = false) => {
+  if (x1 != x2 && y1 != y2) {
     if (!allowDiagonal) return
     // moving diagonally
     const inbetweensX = range(x1, x2)
