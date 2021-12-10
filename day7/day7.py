@@ -1,13 +1,13 @@
 from statistics import mean, median
 from functools import reduce
 
-f = open("day7-example.txt", "r")
+f = open("./day7-example.txt", "r")
 data = [int(num) for num in f.readlines()[0].strip().split(",")]
 
 
 # Gets nth triangle number eg. 5th number = 5 + 4 + 3 + 2 + 1
 # https://en.wikipedia.org/wiki/Triangular_number
-def nth_triangle_number(num):
+def nth_triangular_number(num):
     return reduce(lambda a, b: a + b, range(1, num + 1), 0)
 
 
@@ -21,7 +21,7 @@ def part2(arr):
     avg = round(mean(arr))
 
     return reduce(
-        lambda count, num: count + nth_triangle_number(abs(num - avg)),
+        lambda count, num: count + nth_triangular_number(abs(num - avg)),
         arr,
         0,
     )

@@ -15,10 +15,3 @@ def test_part1():
 
 def test_part2():
     assert day7.part2(example) == 168
-
-
-if __name__ == "__main__":
-    test_nth_triangular_number()
-    test_part1()
-    test_part2()
-    print("Everything passed")
