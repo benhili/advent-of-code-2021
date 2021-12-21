@@ -7,48 +7,56 @@ const parseData = (data) => data.map(line => line.split("").map(char => parseInt
 const incrementAll = (arr) => arr.map(element => element + 1)
 
 const incrementNeighbours = (matrix, x, y) => {
-    let validNeighbours = []
     let right = x + 1 < matrix[0].length
     let left = x - 1 >= 0
     let up = y - 1 >= 0
     let down = y + 1 < matrix.length
 
     if (right) {
-        validNeighbours.push([y, x + 1])
+        if (matrix[y][x + 1] !== 0) {
+            matrix[y][x + 1] += 1
+        }
     }
 
     if (left) {
-        validNeighbours.push([y, x - 1])
+        if (matrix[y][x - 1] !== 0) {
+            matrix[y][x - 1] += 1
+        }
     }
 
     if (up) {
-        validNeighbours.push([y - 1, x])
+        if (matrix[y - 1][x] !== 0) {
+            matrix[y - 1][x] += 1
+        }
     }
 
     if (down) {
-        validNeighbours.push([y + 1, x])
+        if (matrix[y + 1][x] !== 0) {
+            matrix[y + 1][x] += 1
+        }
     }
 
     if (up && right) {
-        validNeighbours.push([y - 1, x + 1])
+        if (matrix[y - 1][x + 1] !== 0) {
+            matrix[y - 1][x + 1] += 1
+        }
     }
 
     if (up && left) {
-        validNeighbours.push([y - 1, x - 1])
+        if (matrix[y - 1][x - 1] !== 0) {
+            matrix[y - 1][x - 1] += 1
+        }
     }
 
     if (down && right) {
-        validNeighbours.push([y + 1, x + 1])
+        if (matrix[y + 1][x + 1] !== 0) {
+            matrix[y + 1][x + 1] += 1
+        }
     }
 
     if (down && left) {
-        validNeighbours.push([y + 1, x - 1])
-    }
-
-    for (let i = 0; i < validNeighbours.length; i++) {
-        let [neighbourY, neighbourX] = validNeighbours[i]
-        if (matrix[neighbourY][neighbourX] != 0) {
-            matrix[neighbourY][neighbourX] += 1
+        if (matrix[y + 1][x - 1] !== 0) {
+            matrix[y + 1][x - 1] += 1
         }
     }
 
