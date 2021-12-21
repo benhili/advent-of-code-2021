@@ -92,7 +92,7 @@ const step = (matrix, n, count = 0, iterations = 0) => {
 
     if (allZeroes(matrix)) {
         // first time every octopus was synchronised 
-        return iterations
+        return iterations + 1
     }
 
     return step(matrix, n, count, iterations + 1)
