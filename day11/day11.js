@@ -12,56 +12,41 @@ const incrementNeighbours = (matrix, x, y) => {
     let up = y - 1 >= 0
     let down = y + 1 < matrix.length
 
-    if (right) {
-        if (matrix[y][x + 1] !== 0) {
-            matrix[y][x + 1] += 1
-        }
+    if (right && matrix[y][x + 1] !== 0) {
+        matrix[y][x + 1] += 1
     }
 
-    if (left) {
-        if (matrix[y][x - 1] !== 0) {
-            matrix[y][x - 1] += 1
-        }
+    if (left && matrix[y][x - 1] !== 0) {
+        matrix[y][x - 1] += 1
     }
 
-    if (up) {
-        if (matrix[y - 1][x] !== 0) {
-            matrix[y - 1][x] += 1
-        }
+    if (up && matrix[y - 1][x] !== 0) {
+        matrix[y - 1][x] += 1
     }
 
-    if (down) {
-        if (matrix[y + 1][x] !== 0) {
-            matrix[y + 1][x] += 1
-        }
+    if (down && matrix[y + 1][x] !== 0) {
+        matrix[y + 1][x] += 1
     }
 
-    if (up && right) {
-        if (matrix[y - 1][x + 1] !== 0) {
-            matrix[y - 1][x + 1] += 1
-        }
+    if (up && right && matrix[y - 1][x + 1] !== 0) {
+        matrix[y - 1][x + 1] += 1
     }
 
-    if (up && left) {
-        if (matrix[y - 1][x - 1] !== 0) {
-            matrix[y - 1][x - 1] += 1
-        }
+    if (up && left && matrix[y - 1][x - 1] !== 0) {
+        matrix[y - 1][x - 1] += 1
     }
 
-    if (down && right) {
-        if (matrix[y + 1][x + 1] !== 0) {
-            matrix[y + 1][x + 1] += 1
-        }
+    if (down && right && matrix[y + 1][x + 1] !== 0) {
+        matrix[y + 1][x + 1] += 1
     }
 
-    if (down && left) {
-        if (matrix[y + 1][x - 1] !== 0) {
-            matrix[y + 1][x - 1] += 1
-        }
+    if (down && left && matrix[y + 1][x - 1] !== 0) {
+        matrix[y + 1][x - 1] += 1
     }
 
     return matrix
 }
+
 
 const allZeroes = (matrix) =>
     matrix.map(line => line.every(val => val === 0)).every(res => res === true)
