@@ -46,7 +46,6 @@ const step = (matrix: number[][], n: number, count = 0, iterations = 0) => {
     let flashed = true
 
     while (flashed) {
-        // Not a fan of mutating the matrix in place so many times
         flashed = false
         for (let y = 0; y < matrix.length; y++) {
             for (let x = 0; x < matrix[0].length; x++) {
@@ -62,7 +61,7 @@ const step = (matrix: number[][], n: number, count = 0, iterations = 0) => {
     }
 
     if (allZeroes(matrix)) {
-        // first time every octopus was synchronised 
+        // first time every octopus was synchronised
         return iterations + 1
     }
 

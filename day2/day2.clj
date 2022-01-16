@@ -5,29 +5,29 @@
        (map #(let [[_ direction value] (re-matches #"([a-z]+) (\d)" %)]
                [(keyword direction) (Integer/parseInt value)]))))
 
-
-
 (defn part-1
   []
-  (let [[depth position] (reduce (fn [[depth position] [direction value]]
-                                   (case direction
-                                     :forward [depth (+ position value)]
-                                     :down [(+ depth value) position]
-                                     :up [(- depth value) position]))
-                           [0 0]
-                           data)]
-  (* depth position)))
+  (let [[depth position]
+        (reduce (fn [[depth position] [direction value]]
+                  (case direction
+                    :forward [depth (+ position value)]
+                    :down [(+ depth value) position]
+                    :up [(- depth value) position]))
+                [0 0]
+                data)]
+    (* depth position)))
 
 (defn part-2
   []
-  (let [[depth position] (reduce (fn [[depth position aim] [direction value]]
-                                   (case direction
-                                     :forward [(+ depth (* aim value)) (+ position value) aim]
-                                     :down [depth position (+ aim value)]
-                                     :up [depth position (- aim value)]))
-                           [0 0 0]
-                           data)]
-  (* depth position)))
+  (let [[depth position]
+        (reduce (fn [[depth position aim] [direction value]]
+                  (case direction
+                    :forward [(+ depth (* aim value)) (+ position value) aim]
+                    :down [depth position (+ aim value)]
+                    :up [depth position (- aim value)]))
+                [0 0 0]
+                data)]
+    (* depth position)))
 
 (print "Part 1" (part-1))
 
