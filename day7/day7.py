@@ -16,7 +16,7 @@ def part1(arr):
 
 
 # This works for the example but for my dataset I have to swap floor for round
-# not sure why I blame advent of code :)))
+# I blame advent of code :)))
 def part2(arr):
     avg = round(mean(arr))
 
